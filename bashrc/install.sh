@@ -109,6 +109,11 @@ export HISTTIMEFORMAT="%Y/%m/%d_%T : "
 # les pages de man en couleur, necessite le paquet most
 export PAGER=most
 
+random-string()
+{
+cat /dev/urandom | tr -dc '123456789!@#$%,;abcdefghijklmnopqrstuvwxyziABCDEFGHIJKLMNOPQRSTUVWXYZ' | fold -w ${1:-50} | head -n 1
+}
+
 # enable bash completion in interactive shells
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
