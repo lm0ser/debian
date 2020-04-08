@@ -1,1 +1,38 @@
+#!/bin/bash
+
+#date=`date +%d-%B-%Y`
+date=`date +%d-%B-%Y-%H:%M:%S`
+local="/var/www/cloud.zone-58.com/data/lucas.moser/files/"
+distant=/volume1/homes/lucas/cloud.zone-58.com/
+hostssh="10.0.0.1"
+userssh="lucas"
+passwordssh="m@np0wer"
+#logfile=$(mktemp /tmp/rsync.XXXXXXXX.log)
+logfile="sync_backup_$(date +%d-%B-%Y-%H:%M:%S).log"
+
+echo "-------------------------------------------------------------" > $logfile
+# nom de la sauvegarde dans le journal
+echo "Sauvegarde de $local du $(date +%d-%B-%Y-%H:%M:%S)" >> $logfile
+echo "-------------------------------------------------------------" >> $logfile
+# heure de début du transfert dans le journal
+echo "Heure de demarrage de la sauvegarde : $(date +%d-%B-%Y-%H:%M:%S)" >> $logfile
+echo "-------------------------------------------------------------" >> $logfile
+
+# transfert des fichiers
+#rsync -avzruh -delete-after --progress --no-owner --no-group /var/www/a_backuper -e "ssh -p 2018" user@adresse_ip:/mnt/backup/backup_srvxxx >$logfile 2>&1
+#rsync -avzruhe ssh --delete-delay --progress --stats $local $userssh@hostssh:$distant > $logfile 2>&1
+
+sshpass -p $passwordssh rsync -avzruh --stats --del --progress $local $userssh@$hostssh:$distant > $logfile 2>&1
+#sshpass -p $passwordssh rsync -avuh --stats --del --progress $local $userssh@$hostssh:$distant > $logfile 2>&1
+
+if [ $? -eq 0 ]; then
+        #mail -s "Rsync backup termine - $(date) for $(hostname)" lucas.moser@zone-58.com < $logfile
+        mail -s "Rsync backup termine - $(date +%d-%B-%Y-%H:%M:%S) for $(hostname)" lucas.moser@zone-58.com < $logfile
+else
+        mail -s "Rsync backup erreur - $(date) for $(hostname)" lucas.moser@zone-58.com < $logfile
+fi
+
+#rm -f $logfile
+
+exit 0
 
