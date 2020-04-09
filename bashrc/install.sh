@@ -107,7 +107,7 @@ PS1="\\\[\\\033[01;31m\\\][\\\u@\\\h\\\[\\\033[00m\\\]:\\\[\\\033[01;34m\\\]\\\w
 export HISTTIMEFORMAT="%Y/%m/%d_%T : "
 
 # les pages de man en couleur, necessite le paquet most
-export PAGER=most
+#export PAGER=most
 
 random-string()
 {
