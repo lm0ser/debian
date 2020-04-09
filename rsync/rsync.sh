@@ -2,7 +2,7 @@
 
 date=`date +%d-%B-%Y-%H:%M:%S`
 local="/dossier/source/"
-distant=/dossier/destination/
+distant="/dossier/destination/"
 hostssh="X.X.X.X"
 userssh="user"
 passwordssh="mdp"
