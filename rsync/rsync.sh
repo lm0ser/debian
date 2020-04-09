@@ -8,7 +8,7 @@ userssh="user"
 passwordssh="mdp"
 logfile="sync_backup_$(date +%d-%B-%Y-%H:%M:%S).log"
 
-sshpass -p $passwordssh rsync -avzruh --stats --del --progress $local $userssh@$hostssh:$distant > $logfile 2>&1
+sshpass -p $passwordssh rsync -avuh --stats --del --progress $local $userssh@$hostssh:$distant >> $logfile 2>&1
 
 if [ $? -eq 0 ]; then
         mail -s "Rsync backup termine - $(date +%d-%B-%Y-%H:%M:%S) for $(hostname)" email@domaine.com < $logfile
