@@ -10,7 +10,7 @@ cd /root
 # Installation des composants
 echo -e "\033[32mInstallation des composants\033[0m"
 apt update
-apt install -y apache2 php libapache2-mod-php php-gd php-mysql php-curl php-mbstring php-xml php-zip php-intl php-imagick php-bcmath php-gmp mariadb-server mariadb-client python3-pymysql unzip
+apt install -y sudo apache2 php libapache2-mod-php php-gd php-mysql php-curl php-mbstring php-xml php-zip php-intl php-imagick php-bcmath php-gmp mariadb-server mariadb-client python3-pymysql unzip
 
 # Configuration de la base de données
 echo -e "\033[32mConfiguration de la base de données\033[0m"
